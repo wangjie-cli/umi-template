@@ -1,0 +1,55 @@
+{
+  "name": "<%= projectName %>",
+  "private": true,
+  "scripts": {
+    "start": "cross-env UMI_ENV=development umi dev",
+    "build": "cross-env UMI_ENV=production umi build",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --fix",
+    "stylelint": "stylelint .ts,.tsx,.js,.jsx,.css,.less src",
+    "stylelint:flex": "stylelint .ts,.tsx,.js,.jsx,.css,.less src --fix",
+    "analyze": "cross-env ANALYZE=1 UMI_ENV=production umi build",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ],
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "src/**/*.{js,jsx,ts,tsx,css,less}": [
+      "stylelint --fix"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/pro-layout": "^6.5.0",
+    "axios": "^0.21.1",
+    "lodash": "^4.17.21",
+    "react": "17.x",
+    "react-dom": "17.x",
+    "umi": "^3.5.17"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@umijs/fabric": "^2.6.2",
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.5.17",
+    "compression-webpack-plugin": "^5.0.0",
+    "cross-env": "^7.0.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.0",
+    "typescript": "^4.1.2",
+    "yorkie": "^2.0.0"
+  }
+}
